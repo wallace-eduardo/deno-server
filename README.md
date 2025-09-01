@@ -11,7 +11,7 @@ This project provides a complete setup for a Deno web server using Oak framework
 ## Project Structure
 
 ```
-├── main.ts                           # Main web server
+├── server.ts                         # Main web server
 ├── main.test.ts                      # Unit tests
 ├── curl.examples.sh                     # cURL examples
 └── README.md                           # This file
@@ -21,8 +21,9 @@ This project provides a complete setup for a Deno web server using Oak framework
 
 ### 1. Start the Server
 
+
 ```bash
-deno run --allow-net main.ts
+deno run --allow-net server.ts
 ```
 
 The server will start on `http://localhost:8000`
@@ -64,8 +65,9 @@ curl -X DELETE http://localhost:8000/users/1
 **Important:** Start the server first in one terminal, then run tests in another terminal.
 
 ```bash
+
 # Terminal 1: Start server
-deno run --allow-net main.ts
+deno run --allow-net server.ts
 
 # Terminal 2: Run tests
 deno test --allow-net main.test.ts

@@ -53,9 +53,10 @@ Deno.test("POST /users - should create new user", async () => {
 
 Deno.test("PUT /users/:id - should update existing user", async () => {
   const updatedData = {
-    name: "Updated Name"
+    name: "Updated Name",
+    email: "updated@example.com"
   };
-  
+
   const response = await fetch(`${BASE_URL}/users/1`, {
     method: "PUT",
     headers: {
@@ -63,11 +64,12 @@ Deno.test("PUT /users/:id - should update existing user", async () => {
     },
     body: JSON.stringify(updatedData)
   });
-  
+
   const data = await response.json();
-  
+
   assertEquals(response.status, 200);
   assertEquals(data.user.name, updatedData.name);
+  assertEquals(data.user.email, updatedData.email);
   assertEquals(data.user.id, 1);
 });
 
