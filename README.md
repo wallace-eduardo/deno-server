@@ -5,17 +5,25 @@ This project provides a complete setup for a Deno web server using Oak framework
 ## Prerequisites
 
 - [Deno](https://deno.land/) installed on your system
+- [curl](https://curl.se/) (optional, for command line API testing)
 - [jq](https://stedolan.github.io/jq/) (optional, for pretty JSON output in curl examples)
 - [Postman](https://www.postman.com/) (optional, for GUI testing)
 
 ## Project Structure
 
 ```
-├── server.ts                         # Main web server
-├── main.test.ts                      # Unit tests
-├── curl.examples.sh                     # cURL examples
-└── README.md                           # This file
+├── server.ts         # Main web server (entry point)
+├── router.ts         # API route definitions
+├── controller.ts     # Handles HTTP requests, validation, and calls service
+├── service.ts        # Business/data logic (can add transformers here)
+├── validator.ts      # Validation schemas (Valibot)
+├── main.test.ts      # Unit tests
+├── curl.examples.sh  # cURL examples
+└── README.md         # This file
 ```
+## Future add to structure: Response Transformation
+
+You can add a transformer function at the end of each service call in `service.ts` to shape or format the data before sending it to the frontend. This is useful for adapting backend data to frontend needs without changing core logic.
 
 ## Quick Start
 
@@ -76,7 +84,7 @@ deno test --allow-net main.test.ts
 ### 4. Use Postman (Optional)
 
 1. Open Postman
-2. Import the collection file: `Deno-Oak-API.postman_collection.json`
+2. Import the collection file: `deno-oak-api.postman.json`
 3. The collection includes all API endpoints with example requests
 
 ## API Endpoints
@@ -89,17 +97,6 @@ deno test --allow-net main.test.ts
 | POST   | `/users` | Create new user |
 | PUT    | `/users/:id` | Update user |
 | DELETE | `/users/:id` | Delete user |
-
-## Features
-
-- ✅ REST API with CRUD operations
-- ✅ In-memory data storage (no database needed)
-- ✅ CORS enabled
-- ✅ JSON request/response handling
-- ✅ Error handling
-- ✅ Unit tests with Deno's built-in test runner
-- ✅ cURL examples for testing
-- ✅ Postman collection for GUI testing
 
 ## Example Request/Response
 
